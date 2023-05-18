@@ -1,4 +1,4 @@
-# Gizmo Shapes
+# Gizmo Shapes 🟠 🔺 🟩
 
 ### Contents
  - [Bézier Curves](#bézier-curves)
