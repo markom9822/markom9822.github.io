@@ -14,8 +14,10 @@ A Bézier curve is a parametric curve and has a set of discrete "control points"
 
 ![Bézier_3_big](https://github.com/markom9822/markom9822.github.io/assets/96113848/a2c4d41e-e949-4d57-858f-3057844be232)
 
-#### Cubic Bézier Curve Equation:
+#### Quadratic Bézier Curve Equation:
+<img src="https://github.com/markom9822/markom9822.github.io/assets/96113848/d79fc499-75c6-4733-ac09-3473f1f12cbd" width="500">
 
+#### Cubic Bézier Curve Equation:
 <img src="https://github.com/markom9822/markom9822.github.io/assets/96113848/10cb2f34-043a-468e-b2c9-9daadd7ac4d7" width="500">
 
 ### Waves
