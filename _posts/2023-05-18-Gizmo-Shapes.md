@@ -13,7 +13,8 @@ A Bézier curve is a parametric curve and has a set of discrete "control points"
 ![Bézier_3_big](https://github.com/markom9822/markom9822.github.io/assets/96113848/a2c4d41e-e949-4d57-858f-3057844be232)
 
 #### Cubic Bézier Curve Equation:
-$B(t) = (1-t^2)P_0 + 3(1-t)^2 tP_1 + 3(1-t)t^2P_2 + t^3P_3$ , $0 \le t \le 1$
+
+<img src="https://github.com/markom9822/markom9822.github.io/assets/96113848/10cb2f34-043a-468e-b2c9-9daadd7ac4d7" width="500">
 
 ### Waves
 Waveforms can simply be generated using the sin, cos and tan functions.
