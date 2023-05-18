@@ -1,3 +1,13 @@
+## Contents
+ - [Waves](#waves)
+ - [Boxes](#boxes) 
+
+
+
+
+
+
+
 This blog post details my exploration into generating shapes and using gizmos to visualise them.
 
 ### Bézier Curves
