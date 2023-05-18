@@ -1,4 +1,4 @@
-## Contents
+### Contents
  - [Bézier Curves](#bézier-curves)
  - [Waves](#waves)
  - [Boxes](#boxes)
