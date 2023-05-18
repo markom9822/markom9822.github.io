@@ -1,3 +1,5 @@
+# Mesh Generation 🎱
+
 This blog post details my exploration into generating 3D meshes.
 
 ### Cube Mesh Generation
