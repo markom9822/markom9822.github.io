@@ -1,12 +1,9 @@
 ## Contents
- - [Waves](#waves)
- - [Boxes](#boxes) 
-
-
-
-
-
-
+ - [Bézier Curves Section](#bézier-curves)
+ - [Waves Section](#waves)
+ - [Boxes Section](#boxes)
+ - [Circles Section](#circles) 
+ - [Sectors Section](#sectors)
 
 This blog post details my exploration into generating shapes and using gizmos to visualise them.
 
