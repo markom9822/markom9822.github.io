@@ -34,14 +34,14 @@ private Vector3 CubicBezierPoint(float t)
 ```
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
-```csharp
-   private Vector3 TetraBezierPoint(float t)
-    {
-        // Eqn: B(t) = (1-t)^4 P_0 + 4(1-t)^3 t*P_1 + 6(1-t)^2t^2 P_2 + 4(1-t)^3t^2 P_3 + t^4 P_4, t[0,1]
-        float omt = 1.0f - t;
-        return m_P0.position * (omt * omt * omt * omt) + m_P1.position * (4 * omt * omt * omt * t) +
-               m_P2.position * (6 * omt * omt * t * t) + m_P3.position * (4 * omt * t * t * t)  + m_P4.position * (t * t * t * t);
-    }
+```c
+private Vector3 TetraBezierPoint(float t)
+{
+   // Eqn: B(t) = (1-t)^4 P_0 + 4(1-t)^3 t*P_1 + 6(1-t)^2t^2 P_2 + 4(1-t)^3t^2 P_3 + t^4 P_4, t[0,1]
+   float omt = 1.0f - t;
+   return m_P0.position * (omt * omt * omt * omt) + m_P1.position * (4 * omt * omt * omt * t) +
+          m_P2.position * (6 * omt * omt * t * t) + m_P3.position * (4 * omt * t * t * t)  + m_P4.position * (t * t * t * t);
+}
 ```
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
