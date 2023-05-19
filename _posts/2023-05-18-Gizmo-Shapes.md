@@ -45,26 +45,25 @@ private Vector3 TetraBezierPoint(float t)
 ```
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
-```csharp
-   /// <summary>
-   /// Generates line points for Cubic Bezier Curve.
-   /// </summary>
-   /// <param name="linePointArray"> array of point positions</param>
-   /// <param name="curveSegments"> number of segments in the curve</param>
-   /// <returns></returns>
-   public Vector3[] GenerateBezierLinePoints(Vector3[] linePointArray, int curveSegments)
-   {
-       curveSegments = Mathf.Max(1, curveSegments);
-       linePointArray = new Vector3[curveSegments + 1];
+```cs
+/// <summary>
+/// Generates line points for Cubic Bezier Curve.
+/// </summary>
+/// <param name="linePointArray"> array of point positions</param>
+/// <param name="curveSegments"> number of segments in the curve</param>
+/// <returns></returns>
+public Vector3[] GenerateBezierLinePoints(Vector3[] linePointArray, int curveSegments)
+{
+    curveSegments = Mathf.Max(1, curveSegments);
+    linePointArray = new Vector3[curveSegments + 1];
     
-       for (int i = 0; i <= curveSegments; i++)
-       {
-           float t = i / (float)curveSegments;
-    
-           linePointArray[i] = CubicBezierPoint(t);
-       }
-       return linePointArray;
-   }
+    for (int i = 0; i <= curveSegments; i++)
+    {
+        float t = i / (float)curveSegments;
+        linePointArray[i] = CubicBezierPoint(t);
+     }
+    return linePointArray;
+}
 ```
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
@@ -89,53 +88,49 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
-```csharp
-   /// <summary>
-   /// Generates line points for given wave type.
-   /// </summary>
-   /// <param name="linePointArray"> array to store points on wave</param>
-   /// <param name="waveSegments"> number of segments in the wave</param>
-   /// <param name="startPoint"> wave start point</param>
-   /// <param name="endPoint"> wave end point</param>
-   /// <param name="amplitude"> amplitude of the wave</param>
-   /// <param name="wavelength"> wave wavelength</param>
-   /// <param name="waveType"> type of wave</param>
-   /// <returns></returns>
-   public Vector3[] GenerateWaveLinePoints(Vector3[] linePointArray, int waveSegments, Transform startPoint, Transform endPoint, float amplitude, float wavelength, WaveType waveType)
-   {
-       waveSegments = Mathf.Max(1, waveSegments);
-       linePointArray = new Vector3[waveSegments + 1];
+```cs
+/// <summary>
+/// Generates line points for given wave type.
+/// </summary>
+/// <param name="linePointArray"> array to store points on wave</param>
+/// <param name="waveSegments"> number of segments in the wave</param>
+/// <param name="startPoint"> wave start point</param>
+/// <param name="endPoint"> wave end point</param>
+/// <param name="amplitude"> amplitude of the wave</param>
+/// <param name="wavelength"> wave wavelength</param>
+/// <param name="waveType"> type of wave</param>
+/// <returns></returns>
+public Vector3[] GenerateWaveLinePoints(Vector3[] linePointArray, int waveSegments, Transform startPoint, Transform endPoint, float amplitude, float wavelength, WaveType waveType)
+{
+    waveSegments = Mathf.Max(1, waveSegments);
+    linePointArray = new Vector3[waveSegments + 1];
 
-       float k = 2 * Mathf.PI / wavelength;
-       float distx = endPoint.position.x - startPoint.position.x;
-       float disty = endPoint.position.y - startPoint.position.y;
-       float distz = endPoint.position.z - startPoint.position.z;
-       float yChange = 0f;
+    float k = 2 * Mathf.PI / wavelength;
+    float distx = endPoint.position.x - startPoint.position.x;
+    float disty = endPoint.position.y - startPoint.position.y;
+    float distz = endPoint.position.z - startPoint.position.z;
+    float yChange = 0f;
 
-       for (int i = 0; i <= waveSegments; i++)
-       {
-           float x = i * (distx / waveSegments);
-           float y = i * (disty / waveSegments);
-           float z = i * (distz / waveSegments);
+    for (int i = 0; i <= waveSegments; i++)
+    {
+        float x = i * (distx / waveSegments);
+        float y = i * (disty / waveSegments);
+        float z = i * (distz / waveSegments);
 
-           Vector3 vec = new Vector3(x, 0, z);
-
-           yChange = waveType switch
-           {
-               WaveType.Sine => amplitude * Mathf.Sin(k * vec.magnitude) + y,
-               WaveType.Cosine => amplitude * Mathf.Cos(k * vec.magnitude) + y,
-               WaveType.Atan => amplitude * Mathf.Atan(k * vec.magnitude) + y,
-               _ => yChange
-           };
+        Vector3 vec = new Vector3(x, 0, z);
+        yChange = waveType switch
+        {
+            WaveType.Sine => amplitude * Mathf.Sin(k * vec.magnitude) + y,
+            WaveType.Cosine => amplitude * Mathf.Cos(k * vec.magnitude) + y,
+            WaveType.Atan => amplitude * Mathf.Atan(k * vec.magnitude) + y,
+            _ => yChange
+        };
             
-           linePointArray[i] = new Vector3(x , yChange, z) + startPoint.position;
-       }
-       return linePointArray;
-   }
+        linePointArray[i] = new Vector3(x , yChange, z) + startPoint.position;
+    }
+    return linePointArray;
+}
 ```
-
-
-
 
 ### Boxes
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
@@ -143,35 +138,34 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 ### Circles
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
-```csharp
-    /// <summary>
-    /// Generates line points for circle.
-    /// </summary>
-    /// <param name="linePointArray"> array of point positions</param>
-    /// <param name="pos"> centre point of circle</param>
-    /// <param name="normal"> normal vector of the circle</param>
-    /// <param name="numSegments"> number of segments in the circle</param>
-    public Vector3[] GenerateCircleLinePoints(Vector3[] linePointArray, Vector3 pos, Vector3 normal, float radius, int numSegments)
-    {
-        Vector3 temp = (normal.x < normal.z) ? new Vector3(1f, 0f, 0f) : new Vector3(0f, 0f, 1f);
-        Vector3 forward = Vector3.Cross(normal, temp).normalized;
-        Vector3 right = Vector3.Cross(forward, normal).normalized;
+```cs
+/// <summary>
+/// Generates line points for circle.
+/// </summary>
+/// <param name="linePointArray"> array of point positions</param>
+/// <param name="pos"> centre point of circle</param>
+/// <param name="normal"> normal vector of the circle</param>
+/// <param name="numSegments"> number of segments in the circle</param>
+public Vector3[] GenerateCircleLinePoints(Vector3[] linePointArray, Vector3 pos, Vector3 normal, float radius, int numSegments)
+{
+    Vector3 temp = (normal.x < normal.z) ? new Vector3(1f, 0f, 0f) : new Vector3(0f, 0f, 1f);
+    Vector3 forward = Vector3.Cross(normal, temp).normalized;
+    Vector3 right = Vector3.Cross(forward, normal).normalized;
  
-        Vector3 prevPt = pos + (forward * radius);
-        float angleStep = (Mathf.PI * 2f) / numSegments;
-        for (int i = 0; i < numSegments; i++)
-        {
-            float angle = (i == numSegments - 1) ? 0f : (i + 1) * angleStep;
+    Vector3 prevPt = pos + (forward * radius);
+    float angleStep = (Mathf.PI * 2f) / numSegments;
+    for (int i = 0; i < numSegments; i++)
+    {
+        float angle = (i == numSegments - 1) ? 0f : (i + 1) * angleStep;
             
-            Vector3 nextPtLocal = new Vector3(Mathf.Sin(angle), 0f, Mathf.Cos(angle)) * radius;
-            Vector3 nextPt = pos + (right * nextPtLocal.x) + (forward * nextPtLocal.z);
+        Vector3 nextPtLocal = new Vector3(Mathf.Sin(angle), 0f, Mathf.Cos(angle)) * radius;
+        Vector3 nextPt = pos + (right * nextPtLocal.x) + (forward * nextPtLocal.z);
             
-            linePointArray[i] = prevPt;
-            prevPt = nextPt;
-        }
-
-        return linePointArray;
+        linePointArray[i] = prevPt;
+        prevPt = nextPt;
     }
+    return linePointArray;
+}
 ```
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
@@ -182,37 +176,37 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 ### Ellipses
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
-```csharp
-    /// <summary>
-    /// Generates line points for ellipse.
-    /// </summary>
-    /// <param name="linePointArray"> array of point positions</param>
-    /// <param name="pos"> centre point of ellipse</param>
-    /// <param name="normal"> normal vector of the ellipse</param>
-    /// <param name="aParam"> A parameter in ellipse equation</param>
-    /// <param name="bParam"> B parameter in ellipse equation</param>
-    /// <param name="numSegments"> number of segments in ellipse</param>
-    public Vector3[] GenerateEllipseLinePoints(Vector3[] linePointArray, Vector3 pos, Vector3 normal, float aParam, float bParam, int numSegments)
-    {
-        Vector3 temp = (normal.x < normal.z) ? new Vector3(1f, 0f, 0f) : new Vector3(0f, 0f, 1f);
-        Vector3 forward = Vector3.Cross(normal, temp).normalized;
-        Vector3 right = Vector3.Cross(forward, normal).normalized;
+```cs
+/// <summary>
+/// Generates line points for ellipse.
+/// </summary>
+/// <param name="linePointArray"> array of point positions</param>
+/// <param name="pos"> centre point of ellipse</param>
+/// <param name="normal"> normal vector of the ellipse</param>
+/// <param name="aParam"> A parameter in ellipse equation</param>
+/// <param name="bParam"> B parameter in ellipse equation</param>
+/// <param name="numSegments"> number of segments in ellipse</param>
+public Vector3[] GenerateEllipseLinePoints(Vector3[] linePointArray, Vector3 pos, Vector3 normal, float aParam, float bParam, int numSegments)
+{
+    Vector3 temp = (normal.x < normal.z) ? new Vector3(1f, 0f, 0f) : new Vector3(0f, 0f, 1f);
+    Vector3 forward = Vector3.Cross(normal, temp).normalized;
+    Vector3 right = Vector3.Cross(forward, normal).normalized;
  
-        Vector3 prevPt = pos + (forward * aParam);
-        float angleStep = (Mathf.PI * 2f) / numSegments;
-        for (int i = 0; i < numSegments; i++)
-        {
-            float angle = (i == numSegments - 1) ? 0f : (i + 1) * angleStep;
+    Vector3 prevPt = pos + (forward * aParam);
+    float angleStep = (Mathf.PI * 2f) / numSegments;
+    for (int i = 0; i < numSegments; i++)
+    {
+        float angle = (i == numSegments - 1) ? 0f : (i + 1) * angleStep;
             
-            Vector3 nextPtLocal = new Vector3(bParam*Mathf.Sin(angle), 0f, aParam*Mathf.Cos(angle));
-            Vector3 nextPt = pos + (right * nextPtLocal.x) + (forward * nextPtLocal.z);
+        Vector3 nextPtLocal = new Vector3(bParam*Mathf.Sin(angle), 0f, aParam*Mathf.Cos(angle));
+        Vector3 nextPt = pos + (right * nextPtLocal.x) + (forward * nextPtLocal.z);
             
-            linePointArray[i] = prevPt;
-            prevPt = nextPt;
-        }
-
-        return linePointArray;
+        linePointArray[i] = prevPt;
+        prevPt = nextPt;
     }
+
+    return linePointArray;
+}
 ```
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
