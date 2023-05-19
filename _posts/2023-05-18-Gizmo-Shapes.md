@@ -142,18 +142,21 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 /// <summary>
 /// Generates line points for circle.
 /// </summary>
-/// <param name="linePointArray"> array of point positions</param>
 /// <param name="pos"> centre point of circle</param>
 /// <param name="normal"> normal vector of the circle</param>
+/// <param name="radius"> circle radius</param>
 /// <param name="numSegments"> number of segments in the circle</param>
-public Vector3[] GenerateCircleLinePoints(Vector3[] linePointArray, Vector3 pos, Vector3 normal, float radius, int numSegments)
+public Vector3[] GenerateCircleLinePoints(Vector3 pos, Vector3 normal, float radius, int numSegments)
 {
+    Vector3[] linePointArray = new Vector3[numSegments];
+        
     Vector3 temp = (normal.x < normal.z) ? new Vector3(1f, 0f, 0f) : new Vector3(0f, 0f, 1f);
     Vector3 forward = Vector3.Cross(normal, temp).normalized;
     Vector3 right = Vector3.Cross(forward, normal).normalized;
  
     Vector3 prevPt = pos + (forward * radius);
     float angleStep = (Mathf.PI * 2f) / numSegments;
+        
     for (int i = 0; i < numSegments; i++)
     {
         float angle = (i == numSegments - 1) ? 0f : (i + 1) * angleStep;
@@ -164,6 +167,7 @@ public Vector3[] GenerateCircleLinePoints(Vector3[] linePointArray, Vector3 pos,
         linePointArray[i] = prevPt;
         prevPt = nextPt;
     }
+
     return linePointArray;
 }
 ```
