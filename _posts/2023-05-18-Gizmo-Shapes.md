@@ -184,14 +184,15 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 /// <summary>
 /// Generates line points for ellipse.
 /// </summary>
-/// <param name="linePointArray"> array of point positions</param>
 /// <param name="pos"> centre point of ellipse</param>
 /// <param name="normal"> normal vector of the ellipse</param>
 /// <param name="aParam"> A parameter in ellipse equation</param>
 /// <param name="bParam"> B parameter in ellipse equation</param>
 /// <param name="numSegments"> number of segments in ellipse</param>
-public Vector3[] GenerateEllipseLinePoints(Vector3[] linePointArray, Vector3 pos, Vector3 normal, float aParam, float bParam, int numSegments)
+public Vector3[] GenerateEllipseLinePoints(Vector3 pos, Vector3 normal, float aParam, float bParam, int numSegments)
 {
+    Vector3[] linePointArray = new Vector3[numSegments];
+
     Vector3 temp = (normal.x < normal.z) ? new Vector3(1f, 0f, 0f) : new Vector3(0f, 0f, 1f);
     Vector3 forward = Vector3.Cross(normal, temp).normalized;
     Vector3 right = Vector3.Cross(forward, normal).normalized;
