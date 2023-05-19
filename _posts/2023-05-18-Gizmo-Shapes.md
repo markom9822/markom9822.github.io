@@ -91,18 +91,17 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 /// <summary>
 /// Generates line points for given wave type.
 /// </summary>
-/// <param name="linePointArray"> array to store points on wave</param>
-/// <param name="waveSegments"> number of segments in the wave</param>
 /// <param name="startPoint"> wave start point</param>
 /// <param name="endPoint"> wave end point</param>
 /// <param name="amplitude"> amplitude of the wave</param>
+/// <param name="waveSegments"> number of segments in the wave</param>
 /// <param name="wavelength"> wave wavelength</param>
 /// <param name="waveType"> type of wave</param>
 /// <returns></returns>
-public Vector3[] GenerateWaveLinePoints(Vector3[] linePointArray, int waveSegments, Transform startPoint, Transform endPoint, float amplitude, float wavelength, WaveType waveType)
+public Vector3[] GenerateWaveLinePoints(Transform startPoint, Transform endPoint, float amplitude, int waveSegments, float wavelength, WaveType waveType)
 {
+    Vector3[] linePointArray = new Vector3[waveSegments + 1];
     waveSegments = Mathf.Max(1, waveSegments);
-    linePointArray = new Vector3[waveSegments + 1];
 
     float k = 2 * Mathf.PI / wavelength;
     float distx = endPoint.position.x - startPoint.position.x;
