@@ -49,13 +49,12 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 /// <summary>
 /// Generates line points for Cubic Bezier Curve.
 /// </summary>
-/// <param name="linePointArray"> array of point positions</param>
 /// <param name="curveSegments"> number of segments in the curve</param>
 /// <returns></returns>
-public Vector3[] GenerateBezierLinePoints(Vector3[] linePointArray, int curveSegments)
+public Vector3[] GenerateBezierLinePoints(int curveSegments)
 {
+    Vector3[] linePointArray = new Vector3[curveSegments + 1];
     curveSegments = Mathf.Max(1, curveSegments);
-    linePointArray = new Vector3[curveSegments + 1];
     
     for (int i = 0; i <= curveSegments; i++)
     {
