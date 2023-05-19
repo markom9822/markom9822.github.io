@@ -20,6 +20,9 @@ linkedin_username: "marko-meara"
 #########################################################################################
 theme: "minima"
 
+layout: single
+classes: wide
+
 rss: rss
 
 kramdown:
