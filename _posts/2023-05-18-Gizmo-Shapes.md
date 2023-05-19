@@ -7,6 +7,7 @@
  - [Circles](#circles)
  - [Ellipses](#ellipses) 
  - [Sectors](#sectors)
+ - [Spirals](#spirals)
 
 This blog post details my exploration into generating shapes and using gizmos to visualise them.
 
