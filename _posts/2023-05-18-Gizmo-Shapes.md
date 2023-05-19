@@ -215,6 +215,42 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 ### Sectors
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
+```cs
+/// <summary>
+/// Generates line points for arc.
+/// </summary>
+/// <param name="position"> centre point of the arc</param>
+/// <param name="dir"> direction of the arc</param>
+/// <param name="anglesRange"> arc angle range</param>
+/// <param name="radius"> radius of the arc</param>
+/// <param name="numSegments"> number of segments in the circle</param>
+public Vector3[] GenerateArcLinePoints(Vector3 position, Vector3 dir, float anglesRange, float radius, int numSegments)
+{
+    Vector3[] linePointArray = new Vector3[numSegments + 1];
+        
+    float srcAngles = GetAnglesFromDir(position, dir);
+    Vector3 initialPos = position;
+    Vector3 posA = initialPos;
+    float stepAngles = anglesRange / numSegments;
+    float angle = srcAngles - anglesRange / 2;
+        
+    for (int i = 0; i <= numSegments; i++)
+    {
+        float rad = Mathf.Deg2Rad * angle;
+        Vector3 posB = initialPos;
+        posB += new Vector3(radius * Mathf.Cos(rad), 0, radius * Mathf.Sin(rad));
+            
+        angle += stepAngles;
+        linePointArray[i] = posA;
+            
+        posA = posB;
+    }
+    return linePointArray;
+}
+```
+
+![Arc Demo 1](https://github.com/markom9822/markom9822.github.io/assets/96113848/0cca0059-4e38-4653-8303-430cdba1ba27)
+
 
 
 *Extra Resources:*
