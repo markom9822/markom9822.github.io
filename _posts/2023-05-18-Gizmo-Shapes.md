@@ -281,7 +281,48 @@ public Vector3[] GenerateArcLinePoints(Vector3 position, Vector3 dir, float angl
 
 ![Arc Demo 1](https://github.com/markom9822/markom9822.github.io/assets/96113848/0cca0059-4e38-4653-8303-430cdba1ba27)
 
+### Spirals
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
+```cs
+/// <summary>
+/// Generates line points for spiral.
+/// </summary>
+/// <param name="pos"> centre point of spiral</param>
+/// <param name="normal"> normal vector of the spiral</param>
+/// <param name="aParam"> A parameter in spiral equation</param>
+/// <param name="bParam"> B parameter in spiral equation</param>
+/// <param name="numSegments"> number of segments in spiral</param>
+/// <param name="spiralTurns"> number of turns in the spiral</param>
+public Vector3[] GenerateSpiralLinePoints(Vector3 pos, Vector3 normal, float aParam, float bParam, int numSegments, float spiralTurns)
+{
+    Vector3[] linePointArray = new Vector3[numSegments];
+
+    Vector3 temp = (normal.x < normal.z) ? new Vector3(1f, 0f, 0f) : new Vector3(0f, 0f, 1f);
+    Vector3 forward = Vector3.Cross(normal, temp).normalized;
+    Vector3 right = Vector3.Cross(forward, normal).normalized;
+ 
+    Vector3 prevPt = pos;
+    float angleStep = (Mathf.PI * 2f) / numSegments;
+    for (int i = 0; i < numSegments*spiralTurns; i++)
+    {
+        float angle = (Math.Abs(i - (numSegments*spiralTurns - 1)) < 0.001f) ? 0f : (i + 1) * angleStep;
+            
+        Vector3 nextPtLocal = new Vector3((aParam*angle)*Mathf.Cos(angle), 0f, (bParam*angle)*Mathf.Sin(angle));
+        Vector3 nextPt = pos + (right * nextPtLocal.x) + (forward * nextPtLocal.z);
+            
+        linePointArray[i] = prevPt;
+        prevPt = nextPt;
+    }
+
+    return linePointArray;
+}
+```
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+![Spiral Demo 1](https://github.com/markom9822/markom9822.github.io/assets/96113848/5684e33e-475f-4893-b513-ca04e7a130e2)
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
 *Extra Resources:*
 - Video - [Bezier Curves Explained](https://www.youtube.com/watch?v=pnYccz1Ha34)
