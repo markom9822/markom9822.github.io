@@ -1,4 +1,4 @@
-# Inside Shapes
+# Inside Shapes 🍥
 
 ### Contents
  - [Inside Polygon](#inside-polygon)
