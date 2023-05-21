@@ -8,12 +8,11 @@ This blog post details my exploration into computing intersection points with li
 
 ### Intersection with a Line
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-Resources: ([link](https://dirask.com/posts/JavaScript-calculate-intersection-point-of-two-lines-for-given-4-points-VjvnAj)), ([link](https://www.habrador.com/tutorials/math/5-line-line-intersection/)).
+The intersection point between two lines can be found using the formula in the image below. This formula takes the x and y values from the two lines (4 points total). This formula and examples of its implementation can be found here ([formula](https://dirask.com/posts/JavaScript-calculate-intersection-point-of-two-lines-for-given-4-points-VjvnAj), [implementation](https://www.habrador.com/tutorials/math/5-line-line-intersection/))
 
 ![image](https://github.com/markom9822/markom9822.github.io/assets/96113848/d756c9b0-a75b-40e4-ac7b-8bd81ae94c3c)
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+This formula is implemented into a method shown below. This method takes 4 vectors, the start and end for each line. Firstly the x and y values for each vector are computed. The coordinates of the intersection are then calculated (Px, Py) forming the intersection vector. Before we return this vector we need to check if this intersection point is within the bounds of both lines. If this passes then the vector is returned otherwise a default value is returned.
 
 ```cs
 /// <summary>
@@ -52,7 +51,7 @@ public Vector3 IntersectionPointTwoLines(Vector3 line1Start, Vector3 line1End, V
 }
 ```
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo conse
+This method below simply just returns the x and y values for the given vector.
 
 ```cs
 /// <summary>
@@ -66,7 +65,7 @@ public (float, float) GetXYPosition(Vector3 vector)
 }
 ```
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+The method below checks if the intersection point is between the given start and end vectors. This is done by comparing the distance between the intersection point and either end and the distance between the start and end points. The method returns true if within the bounds and false if not.
 
 ```cs
 /// <summary>
@@ -90,15 +89,13 @@ public bool IsIntersectionInBounds(Vector3 lineStart, Vector3 lineEnd, Vector3 i
 }
 ```
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem
+A demo of this method in action can be seen below with some gizmos for visualisation. The red sphere shows the intersection point between the two lines. When the lines are not intersecting this sphere is no longer visible.
 
 ![Intersect Line Demo 1](https://github.com/markom9822/markom9822.github.io/assets/96113848/1369a8d7-2bde-4bc7-86d8-7da73acf3712)
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem
-
 ### Intersection with a Shape
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+The method described above can be used to detect intersections with multiple lines. Here multiple lines are used to make a shape. Again the red spheres show where the intersection points are. The number of points in the shape can be adjusted and the number of intersections follow. See a demo of this in the gif below.
 
 ![Intersect Shapes Demo 1](https://github.com/markom9822/markom9822.github.io/assets/96113848/f0c7332a-2ca1-4f94-a42b-2a809fe5f213)
 
