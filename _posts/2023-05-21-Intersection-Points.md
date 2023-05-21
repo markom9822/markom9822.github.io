@@ -47,4 +47,44 @@ public Vector3 IntersectionPointTwoLines(Vector3 line1Start, Vector3 line1End, V
 }
 ```
 
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo conse
+
+```cs
+/// <summary>
+/// Returns the x and y position of the vector.
+/// </summary>
+/// <param name="vector"></param>
+/// <returns> x and y values</returns>
+public (float, float) GetXYPosition(Vector3 vector)
+{
+    return (vector.x, vector.y);
+}
+```
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+```cs
+/// <summary>
+/// Checks if intersection point is between line points.
+/// </summary>
+/// <param name="lineStart"> line start vector</param>
+/// <param name="lineEnd"> line end vector</param>
+/// <param name="intersection"> intersection point vector</param>
+/// <returns> true if within, false if not</returns>
+public bool IsIntersectionInBounds(Vector3 lineStart, Vector3 lineEnd, Vector3 intersection)
+{
+    float distAC = Vector3.Distance(lineStart, intersection);
+    float distBC = Vector3.Distance(lineEnd, intersection);
+    float distAB = Vector3.Distance(lineStart, lineEnd);
+
+    if (Math.Abs(distAC + distBC - distAB) > 0.001f)
+    {
+        return false;
+    }
+    return true;
+}
+```
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem
+
 
