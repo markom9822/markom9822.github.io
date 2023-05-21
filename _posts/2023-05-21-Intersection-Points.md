@@ -35,10 +35,10 @@ public Vector3 IntersectionPointTwoLines(Vector3 line1Start, Vector3 line1End, V
 
     Vector3 pVector = new Vector3(pX, pY, 0f);
 
-    bool isBetween = IsBetween(line2Start, line2End, pVector);
-    bool isInBounds = IsIntersectionInBounds(line1Start, line1End, pVector);
+    bool isInBoundsLine1 = IsIntersectionInBounds(line1Start, line1End, pVector);
+    bool isInBoundsLine2 = IsIntersectionInBounds(line2Start, line2End, pVector);
 
-    if (!isBetween|| !isInBounds)
+    if (!isInBoundsLine1|| !isInBoundsLine2)
     {
         return default;
     }
