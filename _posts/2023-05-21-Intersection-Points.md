@@ -1,3 +1,5 @@
+# Intersection Points
+
 ### Contents
  - [Intersection with a Line](#intersection-with-a-line)
  - 
