@@ -2,6 +2,7 @@
 
 ### Contents
  - [Inside Polygon](#inside-polygon)
+ - [Inside Cuboid](#inside-cuboid)
 
 This blog post details my exploration into computing intersection points with lines and shapes.
 
