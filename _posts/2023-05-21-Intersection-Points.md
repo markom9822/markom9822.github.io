@@ -9,7 +9,7 @@ This blog post details my exploration into computing intersection points with li
 ### Intersection with a Line
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-Resources: ([link](https://dirask.com/posts/JavaScript-calculate-intersection-point-of-two-lines-for-given-4-points-VjvnAj)).
+Resources: ([link](https://dirask.com/posts/JavaScript-calculate-intersection-point-of-two-lines-for-given-4-points-VjvnAj)), ([link](https://www.habrador.com/tutorials/math/5-line-line-intersection/)).
 
 ![image](https://github.com/markom9822/markom9822.github.io/assets/96113848/d756c9b0-a75b-40e4-ac7b-8bd81ae94c3c)
 
