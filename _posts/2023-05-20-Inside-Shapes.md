@@ -124,6 +124,54 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
+```cs
+/// <summary>
+/// Checks if target point is inside cuboid.
+/// </summary>
+/// <param name="cuboidCentre"> centre of the cuboid</param>
+/// <param name="cuboidSize"> cuboid size vector</param>
+/// <param name="targetPosition"> target point transform</param>
+/// <returns></returns>
+public bool IsInsideCuboid(Transform cuboidCentre, Vector3 cuboidSize, Vector3 targetPosition)
+{
+    Vector3 cubeCentreLocalPos = cuboidCentre.localPosition;
+    Vector3 P1 = new Vector3(cubeCentreLocalPos.x - cuboidSize.x / 2, cubeCentreLocalPos.y - cuboidSize.y / 2, cubeCentreLocalPos.z - cuboidSize.z / 2);
+    Vector3 P1Local = cuboidCentre.TransformPoint(P1);
+
+    Vector3 P2 = new Vector3(cubeCentreLocalPos.x - cuboidSize.x / 2, cubeCentreLocalPos.y - cuboidSize.y / 2, cubeCentreLocalPos.z + cuboidSize.z / 2);
+    Vector3 P2Local = cuboidCentre.TransformPoint(P2);
+
+    Vector3 P4 = new Vector3(cubeCentreLocalPos.x + cuboidSize.x / 2, cubeCentreLocalPos.y - cuboidSize.y / 2, cubeCentreLocalPos.z - cuboidSize.z / 2);
+    Vector3 P4Local = cuboidCentre.TransformPoint(P4);
+
+    Vector3 P5 = new Vector3(cubeCentreLocalPos.x - cuboidSize.x / 2, cubeCentreLocalPos.y + cuboidSize.y / 2, cubeCentreLocalPos.z - cuboidSize.z / 2);
+    Vector3 P5Local = cuboidCentre.TransformPoint(P5);
+
+    Vector3 i = P2Local - P1Local;
+    Vector3 j = P4Local - P1Local;
+    Vector3 k = P5Local - P1Local;
+    Vector3 v = targetPosition - P1Local;
+
+    float vdoti = Vector3.Dot(v, i);
+    float vdotj = Vector3.Dot(v, j);
+    float vdotk = Vector3.Dot(v, k);
+
+    float idoti = Vector3.Dot(i, i);
+    float jdotj = Vector3.Dot(j, j);
+    float kdotk = Vector3.Dot(k, k);
+
+    if (vdoti > 0 && vdoti < idoti && vdotj > 0 && vdotj < jdotj && vdotk > 0 && vdotk < kdotk)
+    {
+        // inside cuboid
+        return true;
+    }
+    // outside cuboid
+    return false;
+}
+```
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
 ![Inside Cuboid Demo 1](https://github.com/markom9822/markom9822.github.io/assets/96113848/b0f7b382-f7e0-48e3-8d57-7267db31cb02)
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
