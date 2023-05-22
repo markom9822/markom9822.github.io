@@ -13,7 +13,7 @@ This algorithm computes how many times a ray, starting from the point and going 
 
 ![image](https://github.com/markom9822/markom9822.github.io/assets/96113848/4f319bf3-7344-4e1d-bd63-cb90c78eea66)
 
-For more info see this [wiki article](https://en.wikipedia.org/wiki/Point_in_polygon#:~:text=Ray%20casting%20algorithm,-See%20also%3A%20Jordan&text=If%20the%20point%20is%20on,an%20odd%20number%20of%20times.). This algorithm is implemented in the method shown below.
+For more info see this [wiki article](https://en.wikipedia.org/wiki/Point_in_polygon). This algorithm is implemented in the method shown below.
 This method loops through the points in the shape, checks for intersections with the ray and puts them into a list. Double counting at corners is checked and corrected. True is returned if the point is inside the polygon and false if not.
 
 ```cs
