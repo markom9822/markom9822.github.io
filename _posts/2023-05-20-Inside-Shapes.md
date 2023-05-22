@@ -127,7 +127,17 @@ A demo of this algorithm in action can be seen in the gif below. The number of i
 
 ### Inside Cuboid
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+The method shown below returns whether a point is inside of a cuboid or not. The maths used to compute this uses four key points on the cuboid (P1, P2, P4 and P5) as shown in the image below.
+
+![image](https://github.com/markom9822/markom9822.github.io/assets/96113848/5ff98d12-0e36-4a97-aee8-415366142807)
+
+The i, j and k vectors are computed as shown below. The v vector is from the point of interest to the corner (P1).
+
+![image](https://github.com/markom9822/markom9822.github.io/assets/96113848/11642898-f142-4a9a-8dee-3c5edb88b080)
+
+If the following conditions are satisfied then we can say that the point is inside the cuboid.
+
+![image](https://github.com/markom9822/markom9822.github.io/assets/96113848/e23c1031-9e85-40e6-8390-113a8ed8fbd4)
 
 ```cs
 /// <summary>
