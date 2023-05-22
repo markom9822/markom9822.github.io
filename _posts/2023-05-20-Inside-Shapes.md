@@ -8,7 +8,13 @@ This blog post details my exploration into computing whether a point is inside a
 
 ### Inside Polygon
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+A well known problem in computer graphics is the point-in-polygon (PIP) problem. This asks whether a given point in the plane lies inside, outside, or on the boundary of a polygon. A simple and common approach to this is called the ray cast algorithm. 
+This algorithm computes how many times a ray, starting from the point and going in any fixed direction, intersects the edges of the polygon. If the ray intersects with an even number of edges or zero edges then it is outside the polygon. If the point is on the inside of the polygon then it will intersect with an odd number of edges. 
+
+![image](https://github.com/markom9822/markom9822.github.io/assets/96113848/4f319bf3-7344-4e1d-bd63-cb90c78eea66)
+
+For more info see this wiki article. This algorithm is implemented in the method shown below.
+This method loops through the points in the shape, checks for intersections with the ray and puts them into a list. Double counting at corners is checked and corrected. True is returned if the point is inside the polygon and false if not.
 
 ```cs
 /// <summary>
