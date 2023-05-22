@@ -3,6 +3,7 @@
 ### Contents
  - [Intersection with a Line](#intersection-with-a-line)
  - [Intersection with a Shape](#intersection-with-a-shape)
+ - [Line Intersection with a Plane](#line-intersection-with-a-plane)
 
 This blog post details my exploration into computing intersection points with lines and shapes.
 
@@ -98,5 +99,8 @@ A demo of this method in action can be seen below with some gizmos for visualisa
 The method described above can be used to detect intersections with multiple lines. Here multiple lines are used to make a shape. Again the red spheres show where the intersection points are. The number of points in the shape can be adjusted and the number of intersections follow. See a demo of this in the gif below.
 
 ![Intersect Shapes Demo 1](https://github.com/markom9822/markom9822.github.io/assets/96113848/f0c7332a-2ca1-4f94-a42b-2a809fe5f213)
+
+### Line Intersection with a Plane
+
 
 
