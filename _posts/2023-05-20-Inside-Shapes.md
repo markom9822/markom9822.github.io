@@ -59,8 +59,7 @@ public bool IsInsideShape(List<Transform> pointsList, Transform targetTransform)
     return true;
 }    
 ```
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+The method below looks for an intersection point with the ray pointing in the **right** direction and if so it is added to the list.
 
 ```cs
 /// <summary>
@@ -83,8 +82,7 @@ public void AddIntersectionPoint(Vector3 lineStart, Vector3 lineEnd, Transform t
 }
 ```
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-
+The intersection point method from a previous blog post was used here with slight modifications to allow intersection detection with a ray instead of a line.
 
 ```cs
 /// <summary>
@@ -123,7 +121,7 @@ public Vector3 IntersectionPointTwoLines(Vector3 line1Start, Vector3 line1End, V
 }
 ```
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+A demo of this algorithm in action can be seen in the gif below. The number of intersections points is shown, the ray and intersection points are shown in red, the target point is a green sphere when inside the polygon and red when outside.
 
 ![Inside Shape Demo 1](https://github.com/markom9822/markom9822.github.io/assets/96113848/6df23fbc-0471-4d97-8565-96c14d7a2c0f)
 
