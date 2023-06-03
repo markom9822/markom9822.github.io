@@ -4,6 +4,7 @@
  - [Intersection with a Line](#intersection-with-a-line)
  - [Intersection with a Shape](#intersection-with-a-shape)
  - [Line Intersection with a Plane](#line-intersection-with-a-plane)
+ - [Line Intersection with a Sphere](#line-intersection-with-a-sphere)
 
 This blog post details my exploration into computing intersection points with lines and shapes.
 
