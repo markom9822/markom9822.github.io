@@ -112,11 +112,13 @@ We can **pc** simply subtracting the ray position from the sphere center positio
 Using this we can get dp using **R** and the direction of **pc** and computing their dot product.
 Using the Pythagorean theorem we can calculate **b**.
 We can get the two intersection points by adding and subtracting **dc** from **dp** to get **p0** and **p1**.
-We also say that if **d0** is negative then **p0** no longer exists and the same with **d1** and **p1**.
+We can also say that if **d0** is negative then **p0** no longer exists and the same with **d1** and **p1**.
 
 ![image](https://github.com/markom9822/markom9822.github.io/assets/96113848/ec5ac356-336b-45f5-bfca-72b918b353e7)
 
 [Source: [scratchapixel.com](https://en.wikipedia.org/wiki/B%C3%A9zier_curve)]
+
+Implementing this into code is quite simple with the use of `Vector3.Dot` and `Mathf.Sqrt`. This is shown in the method below.
 
 ```cs
 /// <summary>
