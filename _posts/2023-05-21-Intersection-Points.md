@@ -107,6 +107,12 @@ The method described above can be used to detect intersections with multiple lin
 
 ### Line Intersection with a Sphere
 
+In order to compute intersection points between a ray and a sphere we can take a geometrical approach. The figure below shows a ray starting at **p** and pointed in direction **R**. This ray has two intersection points on the sphere, **p0** and **p1**.
+We can **pc** simply subtracting the ray position from the sphere center position.
+Using this we can get dp using **R** and the direction of **pc** and computing their dot product.
+Using the Pythagorean theorem we can calculate **b**.
+We can get the two intersection points by adding and subtracting **dc** from **dp** to get **p0** and **p1**.
+
 ![image](https://github.com/markom9822/markom9822.github.io/assets/96113848/ec5ac356-336b-45f5-bfca-72b918b353e7)
 
 
