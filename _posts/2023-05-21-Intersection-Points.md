@@ -107,6 +107,9 @@ The method described above can be used to detect intersections with multiple lin
 
 ### Line Intersection with a Sphere
 
+![image](https://github.com/markom9822/markom9822.github.io/assets/96113848/ec5ac356-336b-45f5-bfca-72b918b353e7)
+
+
 ```cs
 /// <summary>
 /// Computes intersection points between ray and sphere.
