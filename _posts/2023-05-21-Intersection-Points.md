@@ -104,3 +104,34 @@ The method described above can be used to detect intersections with multiple lin
 
 
 
+### Line Intersection with a Sphere
+
+```cs
+/// <summary>
+/// Computes intersection points between ray and sphere.
+/// </summary>
+/// <param name="sphereCenter"> center position of sphere</param>
+/// <param name="sphereRadius"> radius of sphere</param>
+/// <param name="rayPosition"> position of where ray is projected from</param>
+/// <param name="rayDirection"> direction of ray projection</param>
+/// <returns> returns two intersection point positions, default if point does not exist</returns>
+public (Vector3, Vector3) RaySphereIntersection(Vector3 sphereCenter, float sphereRadius, Vector3 rayPosition, Vector3 rayDirection)
+{
+    Vector3 rayPointToCentre = sphereCenter - rayPosition;
+    float pointDotDirection = Vector3.Dot(rayPointToCentre, rayDirection);
+    float perpDist = Mathf.Sqrt(Vector3.Dot(rayPointToCentre, rayPointToCentre) - pointDotDirection * pointDotDirection);
+    float intersectDist = Mathf.Sqrt(sphereRadius * sphereRadius - perpDist * perpDist);
+
+    float intersectPointDist0 = pointDotDirection - intersectDist;
+    float intersectPointDist1 = pointDotDirection + intersectDist;
+        
+    Vector3 intersectionPoint1 = rayPosition + (rayDirection.normalized * intersectPointDist0);
+    Vector3 intersectionPoint2 = rayPosition + (rayDirection.normalized * intersectPointDist1);
+
+    if (intersectPointDist0 < 0) intersectionPoint1 = default;
+    if (intersectPointDist1 < 0) intersectionPoint2 = default;
+
+    return (intersectionPoint1, intersectionPoint2);
+}
+```
+
