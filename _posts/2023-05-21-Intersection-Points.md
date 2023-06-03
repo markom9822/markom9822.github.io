@@ -115,6 +115,7 @@ We can get the two intersection points by adding and subtracting **dc** from **d
 
 ![image](https://github.com/markom9822/markom9822.github.io/assets/96113848/ec5ac356-336b-45f5-bfca-72b918b353e7)
 
+[Source: ]
 
 ```cs
 /// <summary>
