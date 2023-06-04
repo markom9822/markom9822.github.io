@@ -109,7 +109,7 @@ The method described above can be used to detect intersections with multiple lin
 
 In order to compute intersection points between a ray and a sphere we can take a geometrical approach. The figure below shows a ray starting at $p$ and pointed in direction $R$. This ray has two intersection points on the sphere, $p_0$ and $p_1$.
 We can get $p_c$ simply subtracting the ray position from the sphere center position.
-$$p_c = c - p$$
+$p_c = c - p$
 Using this we can get $d_p$ using $R$ and the direction of $p_c$ and computing their dot product.
 $$d_p = pc \cdot R$$
 Then using the Pythagorean theorem we can calculate $b$.
