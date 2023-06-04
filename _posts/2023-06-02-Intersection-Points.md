@@ -110,15 +110,15 @@ The method described above can be used to detect intersections with multiple lin
 In order to compute intersection points between a ray and a sphere we can take a geometrical approach. The figure below shows a ray starting at $p$ and pointed in direction $R$. This ray has two intersection points on the sphere, $p_0$ and $p_1$.
 We can get $p_c$ simply subtracting the ray position from the sphere center position.
 $$p_c = c - p$$
-Using this we can get $$d_p$$ using $$R$$ and the direction of $$p_c$$ and computing their dot product.
+Using this we can get $d_p$ using $R$ and the direction of $p_c$ and computing their dot product.
 $$d_p = pc \cdot R$$
-Then using the Pythagorean theorem we can calculate $$b$$.
+Then using the Pythagorean theorem we can calculate $b$.
 $$b = \sqrt{p_c \cdot p_c - d_p^2}$$
-We can get the distances from the ray origin point by adding and subtracting $$d_c$$ from $$d_p$$ to get $$d_0$$ and $$d_1$$.
+We can get the distances from the ray origin point by adding and subtracting $d_c$ from $d_p$ to get $d_0$ and $d_1$.
 $$d_0 = d_p + d_c$$
 $$d_1 = d_p - d_c$$
-From this we can move along the direction of the ray by distance $$d_0$$ to get $$p_0$$ and the same with $$d_1$$ and $$p_1$$.
-We can also say that if $$d_0$$ is negative then $$p_0$$ no longer exists and the same with $$d_1$$ and $$p_1$$.
+From this we can move along the direction of the ray by distance $d_0$ to get $p_0$ and the same with $d_1$ and $p_1$.
+We can also say that if $d_0$ is negative then $p_0$ no longer exists and the same with $d_1$ and $p_1$.
 
 ![image](https://github.com/markom9822/markom9822.github.io/assets/96113848/ec5ac356-336b-45f5-bfca-72b918b353e7)
 
