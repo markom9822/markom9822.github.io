@@ -111,7 +111,7 @@ In order to compute intersection points between a ray and a sphere we can take a
 We can get $p_c$ simply subtracting the ray position from the sphere center position.<br>
 <div align="center">$p_c = c - p$</div><br>
 Using this we can get $d_p$ using $R$ and the direction of $p_c$ and computing their dot product.<br>
-$d_p = pc \cdot R$<br>
+$d_p = p_c \cdot R$<br>
 Then using the Pythagorean theorem we can calculate $b$.<br>
 $b = \sqrt{p_c \cdot p_c - d_p^2}$<br>
 We can get the distances from the ray origin point by adding and subtracting $d_c$ from $d_p$ to get $d_0$ and $d_1$.<br>
