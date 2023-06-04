@@ -155,3 +155,5 @@ public (Vector3, Vector3) RaySphereIntersection(Vector3 sphereCenter, float sphe
 }
 ```
 
+A demonstration of this method in action can be seen in the gif below.
+
