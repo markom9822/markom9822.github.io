@@ -103,6 +103,7 @@ The method described above can be used to detect intersections with multiple lin
 
 ### Line Intersection with a Plane
 
+![image](https://github.com/markom9822/markom9822.github.io/assets/96113848/a40f8ef4-4689-4275-a316-9e10228010ac)
 
 
 ### Line Intersection with a Sphere
