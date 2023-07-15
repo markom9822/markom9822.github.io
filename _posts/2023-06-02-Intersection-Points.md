@@ -123,7 +123,7 @@ We can also say that if $d_0$ is negative then $p_0$ no longer exists and the sa
 
 ![image](https://github.com/markom9822/markom9822.github.io/assets/96113848/ec5ac356-336b-45f5-bfca-72b918b353e7)
 
-[Source: [scratchapixel.com](https://en.wikipedia.org/wiki/B%C3%A9zier_curve)]
+[Source: [scratchapixel.com](https://www.scratchapixel.com/lessons/3d-basic-rendering/minimal-ray-tracer-rendering-simple-shapes/ray-sphere-intersection.html)]
 
 Implementing this into code is quite simple with the use of `Vector3.Dot` and `Mathf.Sqrt`. This is shown in the method below.
 
