@@ -158,3 +158,5 @@ public (Vector3, Vector3) RaySphereIntersection(Vector3 sphereCenter, float sphe
 
 A demonstration of this method in action can be seen in the gif below.
 
+![Ray Sphere Intersection](https://github.com/markom9822/markom9822.github.io/assets/96113848/a9347f09-46d0-4955-9e75-fe99ef36f04c)
+
