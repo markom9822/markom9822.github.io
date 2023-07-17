@@ -108,11 +108,11 @@ In order to compute intersection points between a ray and a plane we can take a 
 <div align="center">$y(t) = bt - b_0$</div><br>
 <div align="center">$z(t) = ct - c_0$</div><br>
 We can define our plane by the following equation:<br>
-<div align="center">$Ax(t) + By(t) + Cz(t) + D = 0</div><br>
+<div align="center">$Ax(t) + By(t) + Cz(t) + D = 0$</div><br>
 Therefore the intersection between this plane and our ray can be written as such:<br>
-<div align="center">$D + (ct + c_0)C + (bt + b_0)B + (at + a_0)A = 0</div><br>
+<div align="center">$D + (ct + c_0)C + (bt + b_0)B + (at + a_0)A = 0$</div><br>
 We now solve for $t$.
-<div align="center">$t = \frac{D + c_0C + b_0B + a_0A}{cC + bB + aA}</div><br>
+<div align="center">$t = \frac{D + c_0C + b_0B + a_0A}{cC + bB + aA}$</div><br>
 
 ![image](https://github.com/markom9822/markom9822.github.io/assets/96113848/a40f8ef4-4689-4275-a316-9e10228010ac)
 
