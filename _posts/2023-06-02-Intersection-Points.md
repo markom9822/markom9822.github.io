@@ -114,9 +114,6 @@ Therefore the intersection between this plane and our ray can be written as such
 We now solve for $t$.
 <div align="center">$t = \frac{D + c_0C + b_0B + a_0A}{cC + bB + aA}$</div><br>
 
-![image](https://github.com/markom9822/markom9822.github.io/assets/96113848/a40f8ef4-4689-4275-a316-9e10228010ac)
-
-
 ### Line Intersection with a Sphere
 
 In order to compute intersection points between a ray and a sphere we can take a geometrical approach. The figure below shows a ray starting at $p$ and pointed in direction $R$. This ray has two intersection points on the sphere, $p_0$ and $p_1$.
