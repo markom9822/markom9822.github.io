@@ -3,7 +3,6 @@
 ### Contents
  - [Inside Polygon](#inside-polygon)
  - [Inside Cuboid](#inside-cuboid)
- - [Inside Sphere](#inside-sphere)
 
 This blog post details my exploration into computing whether a point is inside a shape.
 
@@ -189,7 +188,4 @@ public bool IsInsideCuboid(Transform cuboidCentre, Vector3 cuboidSize, Vector3 t
 The gif below shows a demo of this method in action. The black gizmo shows the cuboid shape and the point of interest is moved in and out of the cuboid. If the point is inside it is green otherwise it is red.
 
 ![Inside Cuboid Demo 1](https://github.com/markom9822/markom9822.github.io/assets/96113848/b0f7b382-f7e0-48e3-8d57-7267db31cb02)
-
-
-### Inside Sphere
 
