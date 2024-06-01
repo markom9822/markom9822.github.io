@@ -48,7 +48,7 @@
       hsl(0, 0%, 25%) 0%, 
       hsla(0, 0%, 25%, 0) 50%
     );
-    --text-gradient-yellow: linear-gradient(
+    --text-gradient-indigo: linear-gradient(
       to right, 
       hsl(45, 100%, 72%), 
       hsl(35, 100%, 68%)
@@ -251,7 +251,7 @@
     left: 0;
     width: 30px;
     height: 3px;
-    background: var(--text-gradient-yellow);
+    background: var(--text-gradient-indigo);
     border-radius: 3px;
   }
   
@@ -818,7 +818,7 @@
     left: -33px;
     height: 6px;
     width: 6px;
-    background: var(--text-gradient-yellow);
+    background: var(--text-gradient-indigo);
     border-radius: 50%;
     box-shadow: 0 0 0 4px var(--jet);
   }
@@ -862,7 +862,7 @@
   }
   
   .skill-progress-fill {
-    background: var(--text-gradient-yellow);
+    background: var(--text-gradient-indigo);
     height: 100%;
     border-radius: inherit;
   }
