@@ -50,8 +50,8 @@
     );
     --text-gradient-indigo: linear-gradient(
       to right, 
-      hsl(45, 100%, 72%), 
-      hsl(35, 100%, 68%)
+      hsl(246, 100%, 72%), 
+      hsl(253, 92%, 63%)
     );
   
     /* solid */
