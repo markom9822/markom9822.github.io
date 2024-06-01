@@ -800,14 +800,6 @@
     font-weight: var(--fw-400);
     line-height: 1.6;
   }
-
-  .timeline-list ul {
-    color: var(--white-1);
-    list-style-type: circle;
-
-    font-weight: var(--fw-400);
-    line-height: 1.6;
-  }
   
   .timeline-item:not(:last-child)::before {
     content: "";
