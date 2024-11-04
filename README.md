@@ -2,4 +2,4 @@
 
 This is a repo for a portfolio website built using Github Pages.
 
-![image](https://github.com/markom9822/markom9822.github.io/assets/96113848/e5cbd1e3-678a-40b5-942c-323a35643519)
+![image](https://github.com/user-attachments/assets/44dda2dc-9afd-4d27-b372-043a87d39031)
