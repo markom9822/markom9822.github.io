@@ -60,6 +60,34 @@
             font-weight: 500;
             font-size: 0.875rem; /* text-sm */
         }
+        .nav-panel {
+            background-color: rgba(74, 51, 41, 0.7); /* Semi-transparent dark brown */
+            backdrop-filter: blur(8px); /* Blur effect */
+            -webkit-backdrop-filter: blur(8px); /* For Safari support */
+            color: #E6DEDC; /* Lighter text for better contrast on blur */
+            padding: 8px 0; /* Adjust padding as needed */
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-bottom-left-radius: 0.5rem; /* rounded-b-lg */
+            border-bottom-right-radius: 0.5rem; /* rounded-b-lg */
+        }
+        .nav-button {
+            background-color: transparent;
+            color: inherit; /* Inherit color from parent nav-panel */
+            padding: 8px 16px;
+            border-radius: 8px;
+            transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+            cursor: pointer;
+            font-family: 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', monospace; /* Monospace for nav text */
+            font-size: 0.85rem; /* Slightly smaller font size */
+            border: none; /* Remove default button border */
+        }
+        .nav-button:hover {
+            background-color: #4A3329; /* Darker brown on hover */
+            color: #E6DEDC; /* Lighter text on hover */
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -81,6 +109,19 @@
             </div>
         </div>
     </header>
+
+    <!-- Navigation Panel -->
+    <nav class="nav-panel">
+        <div class="container mx-auto px-6 flex justify-center space-x-6">
+            <button onclick="scrollToSection('about')" class="nav-button">About Me</button>
+            <button onclick="scrollToSection('experience')" class="nav-button">Work Experience</button>
+            <button onclick="scrollToSection('skills')" class="nav-button">Skills & Interests</button>
+            <button onclick="scrollToSection('projects')" class="nav-button">Projects</button>
+            <button onclick="scrollToSection('blog-posts')" class="nav-button">Blog Posts</button>
+            <button onclick="scrollToSection('education')" class="nav-button">Education</button>
+            <button onclick="scrollToSection('certificates')" class="nav-button">Certificates</button>
+        </div>
+    </nav>
 
     <main class="container mx-auto px-6 py-16">
 
