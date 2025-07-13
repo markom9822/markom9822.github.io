@@ -8,8 +8,6 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts - Inter (will be overridden by monospace/serif) -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Google Fonts - Martian Mono for monospace style -->
-    <link href="https://fonts.googleapis.com/css2?family=Martian+Mono&display=swap" rel="stylesheet">
     <!-- Three.js CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <style>
@@ -20,8 +18,8 @@
             overflow-x: hidden; /* Prevent horizontal scroll */
             position: relative; /* Needed for absolute positioning of canvas */
         }
-        h1, h2, .nav-button, .skill-badge { /* Apply Martian Mono font to all headings and specific elements */
-            font-family: 'Martian Mono', monospace;
+        h1, h2 { /* Apply monospace to all headings and the specific subtitle */
+            font-family: 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', monospace;
         }
         .section-title {
             position: relative;
@@ -65,7 +63,7 @@
             border-radius: 9999px;
             font-weight: normal; /* Changed to normal for consistency with new skill bars */
             font-size: 0.875rem; /* text-sm */
-            /* font-family already set above */
+            font-family: 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', monospace;
         }
         .nav-panel {
             background-color: rgba(74, 51, 41, 0.7); /* Semi-transparent dark brown */
@@ -87,7 +85,7 @@
             border-radius: 8px;
             transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
             cursor: pointer;
-            /* font-family already set above */
+            font-family: 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', monospace; /* Monospace for nav text */
             font-size: 1rem;
             border: none; /* Remove default button border */
         }
@@ -100,18 +98,16 @@
             color: #806f68;
         }
         #three-bg {
-            position: fixed; /* Changed to fixed to cover entire viewport */
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
+            height: 100%; /* Will be adjusted by JS to cover header height */
             z-index: -1; /* Place behind other content */
         }
         header {
             position: relative; /* Ensure header content is above the canvas */
             z-index: 1;
-            /* Make header background slightly transparent to see boids */
-            background-color: rgba(243, 244, 246, 0.8); /* gray-100 with 80% opacity */
         }
     </style>
     <script>
@@ -123,209 +119,27 @@
         }
 
         // Three.js setup
-        let scene, camera, renderer, boids = [];
-        let mouseX = 0, mouseY = 0; // Mouse coordinates
-
-        // Boid class definition
-        class Boid {
-            constructor() {
-                const geometry = new THREE.ConeGeometry(0.1, 0.3, 8); // Small cone for boid
-                geometry.rotateX(Math.PI / 2); // Point cone along positive X axis
-                const material = new THREE.MeshPhongMaterial({ color: 0x8B4513, transparent: true, opacity: 0.7 });
-                this.mesh = new THREE.Mesh(geometry, material);
-                scene.add(this.mesh);
-
-                this.position = new THREE.Vector3(
-                    (Math.random() - 0.5) * 10,
-                    (Math.random() - 0.5) * 10,
-                    (Math.random() - 0.5) * 10
-                );
-                this.velocity = new THREE.Vector3(
-                    (Math.random() - 0.5) * 0.05,
-                    (Math.random() - 0.5) * 0.05,
-                    (Math.random() - 0.5) * 0.05
-                );
-                this.acceleration = new THREE.Vector3();
-                this.maxSpeed = 0.05;
-                this.maxForce = 0.001;
-                this.perceptionRadius = 2; // How far a boid "sees" its neighbors
-            }
-
-            // Update boid's position and orientation
-            update() {
-                this.velocity.add(this.acceleration);
-                this.velocity.clampLength(0, this.maxSpeed); // Limit speed
-                this.position.add(this.velocity);
-                this.acceleration.multiplyScalar(0); // Reset acceleration
-
-                this.mesh.position.copy(this.position);
-
-                // Orient the boid to face its direction of movement
-                const targetQuaternion = new THREE.Quaternion().setFromUnitVectors(
-                    new THREE.Vector3(1, 0, 0), // Original direction of cone
-                    this.velocity.clone().normalize()
-                );
-                this.mesh.quaternion.slerp(targetQuaternion, 0.1); // Smooth rotation
-            }
-
-            // Apply steering force
-            applyForce(force) {
-                this.acceleration.add(force);
-            }
-
-            // Boid behaviors
-            flock(boids) {
-                let separation = this.separate(boids);
-                let alignment = this.align(boids);
-                let cohesion = this.cohere(boids);
-                let boundary = this.stayWithinBounds();
-                let mouseInfluence = this.followMouse();
-
-
-                // Apply weights to forces
-                separation.multiplyScalar(1.5); // Stronger separation
-                alignment.multiplyScalar(1.0);
-                cohesion.multiplyScalar(1.0);
-                boundary.multiplyScalar(2.0); // Stronger boundary avoidance
-                mouseInfluence.multiplyScalar(0.5); // Subtle mouse influence
-
-                this.applyForce(separation);
-                this.applyForce(alignment);
-                this.applyForce(cohesion);
-                this.applyForce(boundary);
-                this.applyForce(mouseInfluence);
-            }
-
-            // Steering towards a target
-            seek(target) {
-                let desired = target.clone().sub(this.position);
-                desired.normalize();
-                desired.multiplyScalar(this.maxSpeed);
-                let steer = desired.sub(this.velocity);
-                steer.clampLength(0, this.maxForce);
-                return steer;
-            }
-
-            // Separation behavior
-            separate(boids) {
-                let desiredSeparation = 0.5; // Minimum distance to maintain
-                let steer = new THREE.Vector3();
-                let count = 0;
-                for (let other of boids) {
-                    let d = this.position.distanceTo(other.position);
-                    if (other !== this && d < desiredSeparation) {
-                        let diff = this.position.clone().sub(other.position);
-                        diff.normalize();
-                        diff.divideScalar(d); // Weight by distance
-                        steer.add(diff);
-                        count++;
-                    }
-                }
-                if (count > 0) {
-                    steer.divideScalar(count);
-                }
-                if (steer.length() > 0) {
-                    steer.normalize();
-                    steer.multiplyScalar(this.maxSpeed);
-                    steer.sub(this.velocity);
-                    steer.clampLength(0, this.maxForce);
-                }
-                return steer;
-            }
-
-            // Alignment behavior
-            align(boids) {
-                let sum = new THREE.Vector3();
-                let count = 0;
-                for (let other of boids) {
-                    let d = this.position.distanceTo(other.position);
-                    if (other !== this && d < this.perceptionRadius) {
-                        sum.add(other.velocity);
-                        count++;
-                    }
-                }
-                if (count > 0) {
-                    sum.divideScalar(count);
-                    sum.normalize();
-                    sum.multiplyScalar(this.maxSpeed);
-                    let steer = sum.sub(this.velocity);
-                    steer.clampLength(0, this.maxForce);
-                    return steer;
-                }
-                return new THREE.Vector3();
-            }
-
-            // Cohesion behavior
-            cohere(boids) {
-                let sum = new THREE.Vector3();
-                let count = 0;
-                for (let other of boids) {
-                    let d = this.position.distanceTo(other.position);
-                    if (other !== this && d < this.perceptionRadius) {
-                        sum.add(other.position);
-                        count++;
-                    }
-                }
-                if (count > 0) {
-                    sum.divideScalar(count);
-                    return this.seek(sum);
-                }
-                return new THREE.Vector3();
-            }
-
-            // Keep boids within bounds
-            stayWithinBounds() {
-                let steer = new THREE.Vector3();
-                const boundarySize = 5; // Define the cubic boundary
-                const turnFactor = 0.1; // How strongly they turn back
-
-                if (this.position.x < -boundarySize) steer.x = turnFactor;
-                else if (this.position.x > boundarySize) steer.x = -turnFactor;
-
-                if (this.position.y < -boundarySize) steer.y = turnFactor;
-                else if (this.position.y > boundarySize) steer.y = -turnFactor;
-
-                if (this.position.z < -boundarySize) steer.z = turnFactor;
-                else if (this.position.z > boundarySize) steer.z = -turnFactor;
-
-                steer.clampLength(0, this.maxForce);
-                return steer;
-            }
-
-            // Follow mouse behavior (subtle attraction)
-            followMouse() {
-                // Convert mouse coordinates to world coordinates
-                let vector = new THREE.Vector3(mouseX, mouseY, 0.5);
-                vector.unproject(camera);
-                let dir = vector.sub(camera.position).normalize();
-                let distance = -camera.position.z / dir.z;
-                let target = camera.position.clone().add(dir.multiplyScalar(distance));
-
-                // Apply a subtle seek force towards the mouse target
-                let steer = target.clone().sub(this.position);
-                steer.multiplyScalar(0.01); // Very subtle influence
-                steer.clampLength(0, this.maxForce);
-                return steer;
-            }
-        }
+        let scene, camera, renderer, cubes = [];
 
         function initThreeJS() {
+            const header = document.querySelector('header');
+            const headerHeight = header.offsetHeight;
             const canvas = document.getElementById('three-bg');
 
-            // Set canvas dimensions to cover the whole window
+            // Set canvas dimensions to match header
             canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
+            canvas.height = headerHeight;
 
             // Scene
             scene = new THREE.Scene();
 
             // Camera
-            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-            camera.position.z = 10; // Adjust camera position for boids
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / headerHeight, 0.1, 1000);
+            camera.position.z = 5;
 
             // Renderer
             renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true }); // alpha: true for transparent background
-            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setSize(window.innerWidth, headerHeight);
             renderer.setPixelRatio(window.devicePixelRatio);
 
             // Lights
@@ -335,40 +149,47 @@
             directionalLight.position.set(0, 1, 1);
             scene.add(directionalLight);
 
-            // Create Boids
-            for (let i = 0; i < 50; i++) { // Increased number of boids
-                boids.push(new Boid());
+            // Cubes
+            const geometry = new THREE.BoxGeometry(0.5, 0.5, 0.5);
+            const material = new THREE.MeshPhongMaterial({ color: 0x8B4513, transparent: true, opacity: 0.4 }); // SaddleBrown
+
+            for (let i = 0; i < 20; i++) {
+                const cube = new THREE.Mesh(geometry, material);
+                cube.position.x = (Math.random() - 0.5) * 10;
+                cube.position.y = (Math.random() - 0.5) * 10;
+                cube.position.z = (Math.random() - 0.5) * 10;
+                cube.rotation.x = Math.random() * Math.PI;
+                cube.rotation.y = Math.random() * Math.PI;
+                scene.add(cube);
+                cubes.push(cube);
             }
 
             // Handle window resize
             window.addEventListener('resize', onWindowResize, false);
-            // Handle mouse movement
-            window.addEventListener('mousemove', onMouseMove, false);
         }
 
         function onWindowResize() {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
+            const header = document.querySelector('header');
+            const headerHeight = header.offsetHeight;
             const canvas = document.getElementById('three-bg');
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
 
-        function onMouseMove(event) {
-            // Normalize mouse coordinates to -1 to +1 range
-            mouseX = (event.clientX / window.innerWidth) * 2 - 1;
-            mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
+            camera.aspect = window.innerWidth / headerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, headerHeight);
+            canvas.height = headerHeight; // Ensure canvas height updates
         }
 
         function animate() {
             requestAnimationFrame(animate);
 
-            // Update and flock boids
-            for (let boid of boids) {
-                boid.flock(boids);
-                boid.update();
-            }
+            // Animate cubes
+            cubes.forEach(cube => {
+                cube.rotation.x += 0.005;
+                cube.rotation.y += 0.005;
+                // Simple floating movement
+                cube.position.y += Math.sin(Date.now() * 0.0005 + cube.position.x) * 0.001;
+                cube.position.x += Math.cos(Date.now() * 0.0005 + cube.position.y) * 0.001;
+            });
 
             renderer.render(scene, camera);
         }
@@ -563,7 +384,7 @@
                         <!-- C# Skill Bar -->
                         <div class="mb-2">
                             <div class="mb-3">
-                                <span class="skill-badge bg-red-100 text-red-700">C#</span>
+                                <span class="skill-badge bg-red-100 text-red-700">C++</span>
                                 <span class="text-sm text-gray-900">(3 yrs)</span>
                             </div>
                             <div class="w-full h-2.5">
