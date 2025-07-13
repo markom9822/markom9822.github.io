@@ -114,9 +114,17 @@
     <script>
         // Function to smoothly scroll to a section
         function scrollToSection(id) {
-            document.getElementById(id).scrollIntoView({
-                behavior: 'smooth'
-            });
+            const element = document.getElementById(id);
+            if (element) {
+                const navPanel = document.querySelector('.nav-panel');
+                const navHeight = navPanel ? navPanel.offsetHeight : 0;
+                const offset = navHeight + 20; // Add 20px extra padding
+
+                window.scrollTo({
+                    top: element.offsetTop - offset,
+                    behavior: 'smooth'
+                });
+            }
         }
 
         // Three.js setup
