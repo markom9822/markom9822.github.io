@@ -8,6 +8,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts - Inter (will be overridden by monospace/serif) -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Google Fonts - Martian Mono -->
+    <link href="https://fonts.googleapis.com/css2?family=Martian+Mono&display=swap" rel="stylesheet">
     <!-- Three.js CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <style>
@@ -18,8 +20,8 @@
             overflow-x: hidden; /* Prevent horizontal scroll */
             position: relative; /* Needed for absolute positioning of canvas */
         }
-        h1, h2 { /* Apply monospace to all headings and the specific subtitle */
-            font-family: 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', monospace;
+        h1, h2, .nav-button, .skill-badge { /* Apply monospace to all headings and the specific subtitle */
+            font-family: 'Martian Mono', monospace;
         }
         .section-title {
             position: relative;
@@ -62,8 +64,8 @@
             padding: 6px 12px;
             border-radius: 9999px;
             font-weight: normal; /* Changed to normal for consistency with new skill bars */
-            font-size: 0.875rem; /* text-sm */
-            font-family: 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', monospace;
+            font-size: 0.875rem;
+             /* font set above */
         }
         .nav-panel {
             background-color: rgba(74, 51, 41, 0.7); /* Semi-transparent dark brown */
@@ -85,7 +87,6 @@
             border-radius: 8px;
             transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
             cursor: pointer;
-            font-family: 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', monospace; /* Monospace for nav text */
             font-size: 1rem;
             border: none; /* Remove default button border */
         }
@@ -384,7 +385,7 @@
                         <!-- C# Skill Bar -->
                         <div class="mb-2">
                             <div class="mb-3">
-                                <span class="skill-badge bg-red-100 text-red-700">C++</span>
+                                <span class="skill-badge bg-red-100 text-red-700">C#</span>
                                 <span class="text-sm text-gray-900">(3 yrs)</span>
                             </div>
                             <div class="w-full h-2.5">
